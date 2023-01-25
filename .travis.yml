@@ -13,16 +13,21 @@ after_success:
   - docker build -t jcchalte/multi-nginx ./nginx
   - docker build -t jcchalte/multi-server ./server
   - docker build -t jcchalte/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push jcchalte/multi-client
+  - docker push jcchalte/multi-nginx
+  - docker push jcchalte/multi-server
+  - docker push jcchalte/multi-worker
 
-
-deploy:
-  provider: elasticbeanstalk
-  region: "eu-west-3"
-  app: "docker-react"
-  env: "Dockerreact-env"
-  bucket_name: "elasticbeanstalk-eu-west-3-768953733553"
-  bucket_path: "docker-react"
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+#
+#deploy:
+#  provider: elasticbeanstalk
+#  region: "eu-west-3"
+#  app: "docker-react"
+#  env: "Dockerreact-env"
+#  bucket_name: "elasticbeanstalk-eu-west-3-768953733553"
+#  bucket_path: "docker-react"
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key: $AWS_SECRET_KEY
