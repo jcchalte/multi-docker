@@ -19,15 +19,15 @@ after_success:
   - docker push jcchalte/multi-server
   - docker push jcchalte/multi-worker
 
-#
-#deploy:
-#  provider: elasticbeanstalk
-#  region: "eu-west-3"
-#  app: "docker-react"
-#  env: "Dockerreact-env"
-#  bucket_name: "elasticbeanstalk-eu-west-3-768953733553"
-#  bucket_path: "docker-react"
-#  on:
-#    branch: master
-#  access_key_id: $AWS_ACCESS_KEY
-#  secret_access_key: $AWS_SECRET_KEY
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-3"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-eu-west-3-768953733553"
+  bucket_path: "multi-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
